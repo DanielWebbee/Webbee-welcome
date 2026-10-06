@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your LinkedIn Pilot Campaign | Webbee Digital</title>
+<meta name="description" content="Webbee's agent researches your company, defines your ICP, finds decision-makers and writes the LinkedIn sequence. Free.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/explore.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F5C518"/><stop offset=".45" stop-color="#F07A1A"/><stop offset="1" stop-color="#D92B2B"/></linearGradient>
+    <symbol id="hex" viewBox="0 0 24 24"><path d="M12 1.5 21.1 6.75v10.5L12 22.5 2.9 17.25V6.75Z" fill="url(#hg)"/><path d="M12 7.6 15.8 9.8v4.4L12 16.4 8.2 14.2V9.8Z" fill="#fff"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <aside class="side">
+    <a class="logo" href="index.html"><img src="assets/logo-light.svg" alt="Webbee - Don't Wait to Be Discovered"></a>
+    <div class="log" id="log"></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="mlogo" style="display:none;align-items:center;justify-content:space-between;padding:12px 16px 0">
+        <a href="index.html"><img src="assets/logo-light.svg" alt="Webbee" style="height:30px;display:block"></a>
+      </div>
+      <div class="cta-bar" id="ctaBar">
+        <svg class="hex"><use href="#hex"/></svg>
+        <div><b>Like this campaign? Our SDR team can launch it for you.</b><br><span>Live on LinkedIn in 14 days · Dedicated SDR · You only show up to meetings</span></div>
+        <button class="btn btn-red js-talk">Talk to us <svg><use href="#arrow"/></svg></button>
+      </div>
+      <nav class="stepper" id="stepper" aria-label="Progress"></nav>
+      <div class="mobile-log" id="mobileLog"></div>
+    </header>
+    <main class="stage"><div class="stage-inner" id="stage"></div></main>
+  </div>
+</div>
+
+<div class="modal" id="talkModal" role="dialog" aria-modal="true" aria-labelledby="talkTitle">
+  <div class="card">
+    <button class="x" aria-label="Close" data-close>×</button>
+    <div id="talkForm">
+      <h3 id="talkTitle">Let's launch your pilot</h3>
+      <p>Leave your details and a Webbee strategist will reach out within one business day to walk you through this campaign.</p>
+      <form id="leadForm" novalidate>
+        <label for="lfName">Full name</label>
+        <input id="lfName" name="name" autocomplete="name" required>
+        <label for="lfEmail">Work email</label>
+        <input id="lfEmail" name="email" type="email" autocomplete="email" required>
+        <label for="lfPhone">Phone (optional)</label>
+        <input id="lfPhone" name="phone" type="tel" autocomplete="tel">
+        <label for="lfNotes">Anything we should know? (optional)</label>
+        <textarea id="lfNotes" name="notes"></textarea>
+        <button class="btn btn-red" type="submit">Send - let's talk</button>
+        <div class="ferr" id="lfErr" role="alert"></div>
+      </form>
+    </div>
+    <div id="talkDone" hidden>
+      <h3>Thanks, we're on it</h3>
+      <p>A Webbee strategist will contact you within one business day. Want to skip the wait?</p>
+      <a class="btn btn-red js-book" href="#" target="_blank" rel="noopener">Pick a time now</a>
+    </div>
+  </div>
+</div>
+
+<script src="assets/explore.js"></script>
+</body>
+</html>

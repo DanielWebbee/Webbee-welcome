@@ -267,22 +267,22 @@
     <canvas id="heroCanvas" aria-hidden="true"></canvas>
     <div class="wrap">
       <div class="pill reveal"><svg class="hex"><use href="#hex"/></svg><b data-count="4820" data-edit>0</b> meetings booked for <b data-count="160" data-edit>0</b> B2B companies</div>
-      <h1 class="reveal">Get <span class="grad-text">qualified meetings</span><br>on your calendar in 30 days</h1>
-      <p class="lead reveal">Our SDR team researches your market, sharpens your ICP, finds the decision-makers, writes personal outreach and books the meetings. You just show up and close.</p>
+      <h1 class="reveal">See your <span class="grad-text">LinkedIn pilot campaign</span><br>in 2 minutes, free</h1>
+      <p class="lead reveal">Paste your website. Our agent researches your market, defines your best campaigns, finds real decision-makers and writes the LinkedIn messages. Then our SDR team runs it for you.</p>
       <div class="chips reveal">
-        <span class="chip"><svg><use href="#check"/></svg>No hiring or training SDRs</span>
-        <span class="chip"><svg><use href="#check"/></svg>Email + LinkedIn + Phone</span>
-        <span class="chip"><svg><use href="#check"/></svg>Live in 14 days</span>
+        <span class="chip"><svg><use href="#check"/></svg>No signup needed</span>
+        <span class="chip"><svg><use href="#check"/></svg>Real companies and decision-makers</span>
+        <span class="chip"><svg><use href="#check"/></svg>LinkedIn-ready messages</span>
       </div>
       <form class="url-form reveal" id="urlForm" novalidate>
         <label for="site" class="sr" style="position:absolute;left:-9999px">Your website</label>
         <input id="site" name="website" type="text" inputmode="url" autocomplete="url" placeholder="Paste your website, e.g. yourcompany.com" required>
-        <button type="submit" aria-label="Get my free pipeline plan">
+        <button type="submit" aria-label="Build my pilot campaign">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </button>
       </form>
       <div class="form-success" id="formSuccess" role="status"></div>
-      <div class="form-note reveal">Free ICP + target-list snapshot. Prefer to talk? <a class="js-book" href="#">Book a 20-min call</a></div>
+      <div class="form-note reveal">Takes about 2 minutes. Prefer to talk? <a class="js-book" href="#">Book a 20-min call</a></div>
     </div>
   </section>
 
@@ -471,7 +471,6 @@
    ====================================================================== */
 const CONFIG = {
   bookingUrl: "https://webbee.digital/contact",     // TODO: Calendly / booking link
-  formEndpoint: "",                                 // TODO: POST endpoint (Zapier/Make/HubSpot). Empty = redirect to bookingUrl
   termsUrl: "#",
   privacyUrl: "#",
 
@@ -569,7 +568,7 @@ $("#faqList").innerHTML = CONFIG.faq.map(([q, a]) => `<details><summary>${esc(q)
 $("#finalWords").innerHTML = CONFIG.finalWords.map((w, i) => w === "\n" ? "<br>" : `<span class="w" style="--d:${(i * 0.09).toFixed(2)}s">${esc(w)}</span> `).join("");
 
 // URL form
-$("#urlForm").addEventListener("submit", async e => {
+$("#urlForm").addEventListener("submit", e => {
   e.preventDefault();
   const input = $("#site");
   let v = input.value.trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
@@ -578,17 +577,7 @@ $("#urlForm").addEventListener("submit", async e => {
     input.placeholder = "Please enter a valid domain, e.g. yourcompany.com"; input.value = "";
     return;
   }
-  if (!CONFIG.formEndpoint) {
-    location.href = CONFIG.bookingUrl + (CONFIG.bookingUrl.includes("?") ? "&" : "?") + "website=" + encodeURIComponent(v);
-    return;
-  }
-  try {
-    await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ website: v, source: "landing" }) });
-  } catch (_) { /* still show confirmation; endpoint errors are logged server-side */ }
-  e.target.style.display = "none";
-  const ok = $("#formSuccess");
-  ok.innerHTML = `<b>Got it: ${esc(v)}</b><br>We'll map your ICP and send a free target-list snapshot within 24 hours.`;
-  ok.style.display = "block";
+  location.href = "explore.html?site=" + encodeURIComponent(v.toLowerCase().replace(/^www\./, ""));
 });
 
 // Count-up stats
