@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webbee Digital: Qualified B2B meetings, done for you</title>
+<meta name="description" content="Webbee runs your entire outbound pipeline: research, ICP, prospect discovery, personal outreach and booked meetings. Don't wait to be discovered.">
+<link rel="icon" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<!--
+  EDIT BEFORE GOING LIVE
+  Everything marked with data-edit (stats, client results, testimonials, prices)
+  is placeholder content. Replace it with real Webbee numbers and approved client quotes.
+  Links and plan values live in the CONFIG object at the bottom of this file.
+-->
+<style>
+  :root {
+    --red: #D92B2B;
+    --orange: #F07A1A;
+    --yellow: #F5C518;
+    --ink: #1E1E1E;
+    --ink-2: #4a4846;
+    --muted: #8a8682;
+    --line: #e7e3de;
+    --bg: #f7f5f2;
+    --card: #ffffff;
+    --soft: #f5f5f5;
+    --grad: linear-gradient(100deg, var(--red) 0%, var(--orange) 100%);
+    --radius: 18px;
+    --shadow: 0 1px 2px rgba(30,30,30,.04), 0 8px 28px rgba(30,30,30,.06);
+    --font-head: "Montserrat", "Inter", Arial, sans-serif;
+    --font-body: "Inter", "Open Sans", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3 { font-family: var(--font-head); letter-spacing: -0.02em; margin: 0; }
+  .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .section { padding: 120px 0 0; }
+  .section-title { text-align: center; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; margin-bottom: 48px; }
+  .section-title::after {
+    content: ""; display: block; width: 56px; height: 3px; margin: 18px auto 0;
+    background: var(--red); border-radius: 2px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(247,245,242,.82); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .nav.scrolled { border-color: var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  .nav img { height: 42px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 32px; font-size: 15px; font-weight: 500; }
+  .nav-links a:not(.btn) { color: var(--ink-2); transition: color .15s; }
+  .nav-links a:not(.btn):hover { color: var(--red); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font-head); font-weight: 600; font-size: 15px; border-radius: 999px; padding: 12px 22px; border: 0; cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s; }
+  .btn-red { background: var(--red); color: #fff; box-shadow: 0 6px 18px rgba(217,43,43,.28); }
+  .btn-red:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(217,43,43,.36); }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark:hover { background: #000; transform: translateY(-1px); }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: 96px 0 40px; text-align: center; overflow: hidden; }
+  .hero canvas, .final canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 1; }
+  .pill { display: inline-block; max-width: 100%; background: var(--card); border-radius: 999px; padding: 8px 16px; font-size: 14px; color: var(--ink-2); box-shadow: var(--shadow); }
+  .pill b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .pill .hex { width: 12px; height: 12px; vertical-align: -1px; margin-right: 4px; }
+  .hero h1 { margin: 28px auto 20px; font-size: clamp(36px, 5.4vw, 64px); line-height: 1.06; font-weight: 800; max-width: 1000px; }
+  .hero p.lead { max-width: 600px; margin: 0 auto; color: var(--ink-2); font-size: clamp(16px, 1.6vw, 19px); }
+  .chips { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 26px 0 34px; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: #efebe6; font-size: 14px; font-weight: 500; color: var(--ink-2); }
+  .chip svg { width: 15px; height: 15px; color: var(--red); }
+  .url-form { position: relative; max-width: 560px; margin: 0 auto; }
+  .url-form input { width: 100%; height: 66px; padding: 0 76px 0 24px; border-radius: 16px; border: 2.5px solid var(--ink); background: var(--card); font: 500 17px var(--font-body); color: var(--ink); outline: none; transition: border-color .15s, box-shadow .15s; }
+  .url-form input:focus { border-color: var(--red); box-shadow: 0 0 0 6px rgba(217,43,43,.12); }
+  .url-form button { position: absolute; right: 9px; top: 9px; width: 48px; height: 48px; border-radius: 12px; border: 0; background: var(--grad); color: #fff; cursor: pointer; display: grid; place-items: center; transition: transform .15s; }
+  .url-form button:hover { transform: scale(1.05); }
+  .url-form button svg { width: 22px; height: 22px; }
+  .form-note { margin-top: 16px; font-size: 14px; color: var(--ink-2); }
+  .form-note a { border-bottom: 1px solid currentColor; }
+  .form-note a:hover { color: var(--red); }
+  .form-success { display: none; max-width: 560px; margin: 0 auto; padding: 20px 24px; border-radius: 16px; background: var(--card); box-shadow: var(--shadow); text-align: left; border-left: 4px solid var(--red); }
+  .form-success b { font-family: var(--font-head); }
+
+  /* ---------- Results ---------- */
+  .results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); }
+  .result { padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+  .person { display: flex; align-items: center; gap: 12px; }
+  .avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; display: grid; place-items: center; color: #fff; font: 700 15px var(--font-head); background: var(--grad); }
+  .person .name { font-weight: 600; font-size: 15px; line-height: 1.2; }
+  .person .co { color: var(--muted); font-size: 13px; }
+  .result .quote { font-size: 14.5px; color: var(--ink-2); flex: 1; }
+  .result .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .metric { background: var(--soft); border-radius: 12px; padding: 12px; }
+  .metric .v { font: 700 22px var(--font-head); font-variant-numeric: tabular-nums; }
+  .metric .k { font-size: 12px; color: var(--muted); }
+
+  /* ---------- Testimonials marquee ---------- */
+  .marquee { display: flex; flex-direction: column; gap: 16px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee-row { display: flex; gap: 16px; width: max-content; animation: scroll 60s linear infinite; }
+  .marquee-row.rev { animation-direction: reverse; animation-duration: 70s; }
+  .marquee:hover .marquee-row { animation-play-state: paused; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  .tcard { width: 330px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; font-size: 14.5px; color: var(--ink-2); }
+  .tcard .avatar { width: 32px; height: 32px; font-size: 12px; }
+  .tcard .person .name { font-size: 14px; }
+
+  /* ---------- Pipeline (stacked sticky cards) ---------- */
+  .stack { max-width: 960px; margin: 0 auto; }
+  .step { position: sticky; top: 100px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 32px; padding: 34px; margin-bottom: 28px; min-height: 300px; border: 1px solid var(--line); }
+  .step .num { display: inline-flex; align-items: center; gap: 8px; font: 600 13px var(--font-head); color: var(--red); letter-spacing: .06em; text-transform: uppercase; }
+  .step .num svg { width: 14px; height: 14px; }
+  .step h3 { font-size: clamp(24px, 2.6vw, 30px); font-weight: 700; margin: 12px 0 12px; line-height: 1.15; }
+  .step p { color: var(--ink-2); margin: 0; font-size: 15.5px; }
+  .mock { background: var(--soft); border-radius: 14px; padding: 18px; font-size: 13.5px; align-self: start; }
+  .mock .row { display: flex; justify-content: space-between; align-items: center; padding: 9px 4px; border-bottom: 1px solid var(--line); }
+  .mock .row:last-child { border-bottom: 0; }
+  .mock .head { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-top: 0; }
+  .mock .muted { color: var(--muted); }
+  .fit { display: flex; align-items: center; gap: 10px; font-variant-numeric: tabular-nums; }
+  .bar { width: 70px; height: 6px; border-radius: 3px; background: #e4e0db; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--grad); border-radius: 3px; }
+  .site { background: var(--card); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .site b { display: block; margin-bottom: 4px; }
+  .working { display: flex; align-items: center; gap: 8px; color: var(--muted); padding: 6px 2px; }
+  .spinner { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #e4e0db; border-top-color: var(--red); animation: spin .9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .ok { width: 12px; height: 12px; color: #1f9d55; }
+  .prospects { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .prospect { background: var(--card); border-radius: 10px; padding: 12px; display: flex; gap: 10px; align-items: center; }
+  .prospect .avatar { width: 34px; height: 34px; font-size: 12px; }
+  .prospect .t { font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .prospect b { font-size: 13px; display: block; }
+  .email { background: var(--card); border-radius: 10px; padding: 16px; line-height: 1.55; }
+  .email .subj { font-size: 12px; color: var(--muted); padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .email .subj b { color: var(--ink); }
+  .email mark { background: rgba(240,122,26,.16); color: inherit; padding: 0 2px; border-radius: 3px; }
+  .channels { display: flex; gap: 6px; margin-top: 12px; }
+  .channels span { font-size: 11.5px; padding: 4px 10px; border-radius: 999px; background: var(--card); color: var(--ink-2); }
+  .chat { display: flex; flex-direction: column; gap: 8px; }
+  .bubble { max-width: 78%; padding: 9px 13px; border-radius: 14px; background: var(--card); }
+  .bubble.me { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
+  .bubble.them { border-bottom-left-radius: 4px; }
+  .booked { align-self: flex-end; display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; font-weight: 600; color: var(--red); background: rgba(217,43,43,.08); padding: 6px 12px; border-radius: 999px; }
+  .status { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #1f9d55; }
+  .dot.amber { background: var(--orange); }
+  .dot.gray { background: #c4bfba; }
+
+  /* ---------- Edge ---------- */
+  .edge { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .edge .card { padding: 30px; position: relative; overflow: hidden; }
+  .edge .card::before { content: ""; position: absolute; left: 0; top: 0; right: 0; height: 3px; background: var(--grad); }
+  .edge h3 { font-size: 26px; font-weight: 700; line-height: 1.2; margin-bottom: 14px; }
+  .edge p { margin: 0; color: var(--ink-2); font-size: 15px; }
+
+  /* ---------- Pricing ---------- */
+  .pricing { max-width: 620px; margin: 0 auto; padding: 32px; }
+  .plan-tabs { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); text-align: center; font: 600 15px var(--font-head); color: var(--muted); }
+  .plan-tabs button { background: none; border: 0; font: inherit; color: inherit; cursor: pointer; padding: 6px 0 14px; }
+  .plan-tabs button.on { color: var(--ink); }
+  .track { position: relative; height: 4px; background: var(--line); border-radius: 2px; margin-bottom: 24px; }
+  .track i { position: absolute; left: 0; top: 0; height: 100%; background: var(--grad); border-radius: 2px; transition: width .35s cubic-bezier(.2,.8,.2,1); }
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .plan-grid .metric { padding: 16px; }
+  .plan-grid .metric .v { font-size: 26px; }
+  .plan-price { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 24px 0 20px; }
+  .plan-price .v { font: 800 40px var(--font-head); }
+  .plan-price .v small { font-size: 16px; font-weight: 500; color: var(--muted); }
+  .plan-price .note { color: var(--muted); font-size: 14px; }
+  .pricing .btn { width: 100%; padding: 16px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { list-style: none; cursor: pointer; padding: 22px 4px; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-weight: 600; font-size: 16.5px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary svg { width: 18px; height: 18px; flex: none; color: var(--muted); transition: transform .25s, color .2s; }
+  .faq details[open] summary svg { transform: rotate(45deg); color: var(--red); }
+  .faq .a { padding: 0 4px 22px; color: var(--ink-2); max-width: 680px; }
+
+  /* ---------- Final CTA ---------- */
+  .final { position: relative; text-align: center; padding: 140px 0 160px; margin-top: 80px; overflow: hidden; }
+  .final .wrap { position: relative; z-index: 1; }
+  .final h2 { font-size: clamp(34px, 5vw, 60px); font-weight: 800; line-height: 1.1; margin-bottom: 36px; }
+  .final h2 .w { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(12px); transition: opacity .7s, filter .7s, transform .7s; transition-delay: var(--d, 0s); }
+  .final.in h2 .w { opacity: 1; filter: blur(0); transform: none; }
+  .final .btn { padding: 16px 30px; font-size: 16px; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--line); padding: 64px 0 40px; font-size: 14px; color: var(--ink-2); }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+  .foot-grid img { height: 46px; width: auto; }
+  .foot-grid p { margin: 14px 0 0; max-width: 280px; color: var(--muted); }
+  .foot-grid h4 { margin: 0 0 14px; font: 600 13px var(--font-head); color: var(--ink); text-transform: uppercase; letter-spacing: .06em; }
+  .foot-grid a { display: block; margin-bottom: 10px; }
+  .foot-grid a:hover { color: var(--red); }
+  .foot-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .foot-bottom::before { content: ""; }
+
+  /* ---------- Reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px) {
+    .results { grid-template-columns: 1fr 1fr; }
+    .step { grid-template-columns: 1fr; position: relative; top: 0; }
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 680px) {
+    .wrap { padding: 0 16px; }
+    .section { padding-top: 88px; }
+    .nav-links a:not(.btn) { display: none; }
+    .nav img { height: 34px; }
+    .nav .btn { padding: 10px 16px; font-size: 14px; }
+    .hero { padding-top: 56px; }
+    .pill { font-size: 12.5px; padding: 7px 12px; }
+    .results, .edge, .prospects { grid-template-columns: 1fr; }
+    .step { padding: 22px; }
+    .tcard { width: 280px; }
+    .pricing { padding: 22px; }
+    .foot-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal, .final h2 .w { opacity: 1; transform: none; filter: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hexagon symbol (brand motif) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F5C518"/><stop offset=".45" stop-color="#F07A1A"/><stop offset="1" stop-color="#D92B2B"/></linearGradient>
+    <symbol id="hex" viewBox="0 0 24 24"><path d="M12 1.5 21.1 6.75v10.5L12 22.5 2.9 17.25V6.75Z" fill="url(#hg)"/><path d="M12 7.6 15.8 9.8v4.4L12 16.4 8.2 14.2V9.8Z" fill="#fff"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" aria-label="Webbee Digital home"><img src="assets/logo-light.svg" alt="Webbee - Don't Wait to Be Discovered"></a>
+    <nav class="nav-links">
+      <a href="#pipeline">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-dark js-book" href="#">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <canvas id="heroCanvas" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="pill reveal"><svg class="hex"><use href="#hex"/></svg><b data-count="4820" data-edit>0</b> meetings booked for <b data-count="160" data-edit>0</b> B2B companies</div>
+      <h1 class="reveal">Get <span class="grad-text">qualified meetings</span><br>on your calendar in 30 days</h1>
+      <p class="lead reveal">Our SDR team researches your market, sharpens your ICP, finds the decision-makers, writes personal outreach and books the meetings. You just show up and close.</p>
+      <div class="chips reveal">
+        <span class="chip"><svg><use href="#check"/></svg>No hiring or training SDRs</span>
+        <span class="chip"><svg><use href="#check"/></svg>Email + LinkedIn + Phone</span>
+        <span class="chip"><svg><use href="#check"/></svg>Live in 14 days</span>
+      </div>
+      <form class="url-form reveal" id="urlForm" novalidate>
+        <label for="site" class="sr" style="position:absolute;left:-9999px">Your website</label>
+        <input id="site" name="website" type="text" inputmode="url" autocomplete="url" placeholder="Paste your website, e.g. yourcompany.com" required>
+        <button type="submit" aria-label="Get my free pipeline plan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+      <div class="form-success" id="formSuccess" role="status"></div>
+      <div class="form-note reveal">Free ICP + target-list snapshot. Prefer to talk? <a class="js-book" href="#">Book a 20-min call</a></div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTS ================= -->
+  <section class="section" id="results">
+    <div class="wrap">
+      <h2 class="section-title reveal">What our clients got out of it</h2>
+      <div class="results" id="resultsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="section">
+    <div class="wrap"><h2 class="section-title reveal">What clients are saying</h2></div>
+    <div class="marquee reveal">
+      <div class="marquee-row" id="row1"></div>
+      <div class="marquee-row rev" id="row2"></div>
+    </div>
+  </section>
+
+  <!-- ================= PIPELINE ================= -->
+  <section class="section" id="pipeline">
+    <div class="wrap">
+      <h2 class="section-title reveal">We run the entire pipeline</h2>
+      <div class="stack">
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 01</span>
+            <h3>Learns what you sell</h3>
+            <p>We study your site, offer, past wins and competitors, so every message speaks your buyer's language from day one.</p>
+          </div>
+          <div class="mock">
+            <div class="site"><b>yourcompany.com</b><span class="muted">B2B cybersecurity platform for mid-market finance teams. SOC 2, 120+ customers.</span></div>
+            <div class="working"><svg class="ok"><use href="#check"/></svg>Value props and proof points mapped</div>
+            <div class="working"><span class="spinner"></span>Researching competitors…</div>
+            <div class="working" style="padding-left:20px">↳ competitor-one.com · competitor-two.io</div>
+          </div>
+        </article>
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 02</span>
+            <h3>Figures out who buys it</h3>
+            <p>We score every segment by fit and intent, and start where the odds are highest. No spray and pray.</p>
+          </div>
+          <div class="mock">
+            <div class="row head"><span>Segment</span><span>Fit score</span></div>
+            <div class="row"><span>CFOs at fintech scale-ups</span><span class="fit"><span class="bar"><i style="width:94%"></i></span>94%</span></div>
+            <div class="row"><span>Heads of IT, regional banks</span><span class="fit"><span class="bar"><i style="width:88%"></i></span>88%</span></div>
+            <div class="row"><span>Insurance ops leaders</span><span class="fit"><span class="bar"><i style="width:81%"></i></span>81%</span></div>
+            <div class="row"><span>Accounting firms 50–200</span><span class="fit"><span class="bar"><i style="width:74%"></i></span>74%</span></div>
+            <div class="row muted"><span>Retail chains</span><span class="fit"><span class="bar"><i style="width:41%"></i></span>41%</span></div>
+          </div>
+        </article>
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 03</span>
+            <h3>Finds those exact people</h3>
+            <p>Verified decision-makers, enriched with role, trigger events and context. Every contact is checked before anyone reaches out.</p>
+          </div>
+          <div class="mock">
+            <div class="prospects">
+              <div class="prospect"><span class="avatar">SL</span><div><b>Sarah L.</b><span class="t">CFO · Series B fintech<br>Just raised $24M</span></div></div>
+              <div class="prospect"><span class="avatar">DM</span><div><b>David M.</b><span class="t">VP IT · Regional bank<br>Hiring 3 security roles</span></div></div>
+              <div class="prospect"><span class="avatar">NK</span><div><b>Noa K.</b><span class="t">COO · Insurtech<br>New in role (2 mo)</span></div></div>
+              <div class="prospect"><span class="avatar">JR</span><div><b>James R.</b><span class="t">Head of Finance<br>Expanding to EU</span></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 04</span>
+            <h3>Writes each a personal message</h3>
+            <p>Real research in every first line. Multichannel sequences across email, LinkedIn and phone, written by people who do this all day.</p>
+          </div>
+          <div class="mock">
+            <div class="email">
+              <div class="subj">Subject: <b>Congrats on the Series B, Sarah</b></div>
+              Hi Sarah,<br><br>
+              Saw <mark>you just closed your $24M round and are hiring across finance ops</mark>. That usually means audit season gets heavier fast.<br><br>
+              We helped a similar team cut month-end close by 4 days. Worth a quick look?
+            </div>
+            <div class="channels"><span>✉ Email</span><span>in LinkedIn</span><span>☎ Phone</span></div>
+          </div>
+        </article>
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 05</span>
+            <h3>Handles replies and books meetings</h3>
+            <p>We answer objections, qualify interest and put the meeting straight on your calendar, with full context on who you're meeting.</p>
+          </div>
+          <div class="mock chat">
+            <div class="bubble them">How does this work with our existing ERP?</div>
+            <div class="bubble me">It plugs in directly. Want me to walk you through it Tuesday?</div>
+            <div class="bubble them">Sure, Tuesday 2pm works.</div>
+            <div class="bubble me">Done, invite sent. Talk then!</div>
+            <span class="booked"><svg class="ok" style="color:var(--red)"><use href="#check"/></svg>Meeting booked · Tue 14:00</span>
+          </div>
+        </article>
+
+        <article class="card step">
+          <div>
+            <span class="num"><svg><use href="#hex"/></svg>Step 06</span>
+            <h3>Learns what works and doubles down</h3>
+            <p>Weekly reporting on every segment. We scale what converts, pause what doesn't, and keep sharpening the message.</p>
+          </div>
+          <div class="mock">
+            <div class="row head"><span>Campaign</span><span>Status</span><span>Meetings</span></div>
+            <div class="row"><span>Fintech CFOs</span><span class="status"><span class="dot"></span>Scaling</span><b>14</b></div>
+            <div class="row"><span>Regional banks</span><span class="status"><span class="dot"></span>Scaling</span><b>9</b></div>
+            <div class="row"><span>Insurance ops</span><span class="status"><span class="dot amber"></span>Testing</span><b>4</b></div>
+            <div class="row muted"><span>Retail chains</span><span class="status"><span class="dot gray"></span>Paused</span><b>0</b></div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDGE ================= -->
+  <section class="section">
+    <div class="wrap">
+      <h2 class="section-title reveal">Why teams choose Webbee</h2>
+      <div class="edge">
+        <div class="card reveal"><h3>A dedicated SDR team</h3><p>Trained on your product, managed by us. No recruiting, ramp-up or churn on your side.</p></div>
+        <div class="card reveal"><h3>Every channel, one pipeline</h3><p>Email, LinkedIn and phone working together, with our own sending infrastructure so your domain stays safe.</p></div>
+        <div class="card reveal"><h3>Meetings, not activity</h3><p>We report on qualified meetings and pipeline, not on how many emails went out.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRICING ================= -->
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <h2 class="section-title reveal">Simple plans. No long-term lock-in.</h2>
+      <div class="card pricing reveal">
+        <div class="plan-tabs" id="planTabs" role="tablist"></div>
+        <div class="track"><i id="planTrack"></i></div>
+        <div class="plan-grid" id="planGrid"></div>
+        <div class="plan-price"><div class="v" id="planPrice"></div><div class="note" id="planNote"></div></div>
+        <a class="btn btn-red js-book" href="#">Book a call to get started</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <h2 class="section-title reveal">Common questions</h2>
+      <div class="faq reveal" id="faqList"></div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section class="final" id="final">
+    <canvas id="finalCanvas" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <h2><span id="finalWords"></span></h2>
+      <a class="btn btn-red js-book" href="#">Book your strategy call</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img src="assets/logo-light.svg" alt="Webbee Digital">
+        <p>Outsourced SDR and B2B lead generation. Don't wait to be discovered.</p>
+      </div>
+      <div><h4>Services</h4><a href="#pipeline">Outsourced SDR</a><a href="#pipeline">LinkedIn outreach</a><a href="#pipeline">Cold email</a><a href="#pipeline">Appointment setting</a></div>
+      <div><h4>Company</h4><a href="#results">Results</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="js-book" href="#">Contact</a></div>
+      <div><h4>Legal</h4><a href="#" class="js-terms">Terms of use</a><a href="#" class="js-privacy">Privacy policy</a></div>
+    </div>
+    <div class="foot-bottom"><span>© <span id="year"></span> Webbee Digital. All rights reserved.</span><span>Don't Wait to Be Discovered</span></div>
+  </div>
+</footer>
+
+<script>
+/* ======================================================================
+   CONFIG: edit links, plans and content here
+   ====================================================================== */
+const CONFIG = {
+  bookingUrl: "https://webbee.digital/contact",     // TODO: Calendly / booking link
+  formEndpoint: "",                                 // TODO: POST endpoint (Zapier/Make/HubSpot). Empty = redirect to bookingUrl
+  termsUrl: "#",
+  privacyUrl: "#",
+
+  // PLACEHOLDER numbers: replace with real plans before publishing
+  plans: [
+    { name: "Starter", price: "$2,500", per: "/mo", note: "1 SDR · 1 market",       stats: [["1", "Dedicated SDR"], ["~600", "Prospects / month"], ["2", "Channels"], ["6–10", "Meetings / month"]] },
+    { name: "Growth",  price: "$4,500", per: "/mo", note: "Most popular",          stats: [["2", "Dedicated SDRs"], ["~1,400", "Prospects / month"], ["3", "Channels"], ["12–20", "Meetings / month"]] },
+    { name: "Scale",   price: "Custom", per: "",    note: "Multiple markets & teams", stats: [["3+", "Dedicated SDRs"], ["3,000+", "Prospects / month"], ["3", "Channels"], ["25+", "Meetings / month"]] },
+  ],
+
+  // PLACEHOLDER client results: replace with real, approved case studies
+  results: [
+    { name: "Client name", co: "Company · SaaS",       quote: "Short quote about the outcome, in the client's words.", m: [["38", "Meetings"], ["$1.2M", "Pipeline"]] },
+    { name: "Client name", co: "Company · Fintech",    quote: "Short quote about the outcome, in the client's words.", m: [["24", "Meetings"], ["6 wks", "To first deal"]] },
+    { name: "Client name", co: "Company · Cyber",      quote: "Short quote about the outcome, in the client's words.", m: [["51", "Meetings"], ["31%", "Reply rate"]] },
+    { name: "Client name", co: "Company · Services",   quote: "Short quote about the outcome, in the client's words.", m: [["17", "Meetings"], ["4", "Deals closed"]] },
+  ],
+
+  // PLACEHOLDER testimonials: replace with real, approved quotes
+  testimonials: [
+    "Testimonial placeholder: what changed after working with Webbee.",
+    "Testimonial placeholder: how fast the first meetings landed.",
+    "Testimonial placeholder: quality of the leads vs. previous agencies.",
+    "Testimonial placeholder: how easy onboarding was for the team.",
+    "Testimonial placeholder: the reporting and transparency.",
+    "Testimonial placeholder: replacing an in-house SDR hire.",
+    "Testimonial placeholder: the personalization of the messaging.",
+    "Testimonial placeholder: closed deals that came from the pipeline.",
+  ],
+
+  faq: [
+    ["What do I need to get started?", "Your website and a 30-minute kickoff call. We handle research, ICP, lists, copy and infrastructure. Most clients are live within 14 days."],
+    ["How is this different from hiring an SDR?", "No recruiting, training, tooling or management overhead. You get a trained team, proven playbooks and our sending infrastructure from week one, and you can scale up or down as needed."],
+    ["Which channels do you use?", "Email, LinkedIn and phone, coordinated into one sequence per prospect. The mix depends on where your buyers actually respond."],
+    ["Will you send from my domain?", "No. We set up and warm dedicated secondary domains and inboxes, so your primary domain's reputation is never at risk."],
+    ["How much control do I have over messaging?", "Full control. You approve the ICP, target lists and every sequence before anything goes out, and you can pause or adjust at any time."],
+    ["What happens when a prospect replies?", "Our team handles replies, objections and follow-ups, qualifies the lead and books the meeting directly into your calendar with a short brief on who you're meeting."],
+    ["How do you report results?", "A live dashboard plus a weekly report: meetings booked, reply rates by segment, and what we're changing next."],
+    ["Is there a long-term contract?", "No long lock-ins. Plans run month to month after an initial ramp-up period."],
+  ],
+
+  finalWords: ["You've", "tried", "agencies", "before.", "\n", "This", "one", "books", "meetings."],
+};
+
+/* ====================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const initials = n => n.split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase();
+
+// Links
+document.querySelectorAll(".js-book").forEach(a => { a.href = CONFIG.bookingUrl; a.target = "_blank"; a.rel = "noopener"; });
+document.querySelectorAll(".js-terms").forEach(a => a.href = CONFIG.termsUrl);
+document.querySelectorAll(".js-privacy").forEach(a => a.href = CONFIG.privacyUrl);
+$("#year").textContent = new Date().getFullYear();
+
+// Nav border on scroll
+const nav = $("#nav");
+addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 8), { passive: true });
+
+// Results
+$("#resultsGrid").innerHTML = CONFIG.results.map(r => `
+  <div class="card result reveal" data-edit>
+    <div class="person"><span class="avatar">${esc(initials(r.name))}</span><div><div class="name">${esc(r.name)}</div><div class="co">${esc(r.co)}</div></div></div>
+    <div class="quote">“${esc(r.quote)}”</div>
+    <div class="metrics">${r.m.map(([v, k]) => `<div class="metric"><div class="v">${esc(v)}</div><div class="k">${esc(k)}</div></div>`).join("")}</div>
+  </div>`).join("");
+
+// Testimonials marquee (duplicated for seamless loop)
+const tcard = (q, i) => `<div class="card tcard" data-edit><div>“${esc(q)}”</div><div class="person"><span class="avatar">C${i + 1}</span><div><div class="name">Client name</div><div class="co">Role, Company</div></div></div></div>`;
+const half = Math.ceil(CONFIG.testimonials.length / 2);
+const r1 = CONFIG.testimonials.slice(0, half).map((q, i) => tcard(q, i)).join("");
+const r2 = CONFIG.testimonials.slice(half).map((q, i) => tcard(q, i + half)).join("");
+$("#row1").innerHTML = r1 + r1;
+$("#row2").innerHTML = r2 + r2;
+
+// Pricing
+const tabs = $("#planTabs");
+tabs.style.setProperty("--n", CONFIG.plans.length);
+tabs.innerHTML = CONFIG.plans.map((p, i) => `<button role="tab" data-i="${i}">${esc(p.name)}</button>`).join("");
+function setPlan(i) {
+  const p = CONFIG.plans[i];
+  tabs.querySelectorAll("button").forEach((b, j) => { b.classList.toggle("on", j === i); b.setAttribute("aria-selected", j === i); });
+  $("#planTrack").style.width = ((i + 1) / CONFIG.plans.length * 100) + "%";
+  $("#planGrid").innerHTML = p.stats.map(([v, k]) => `<div class="metric"><div class="v">${esc(v)}</div><div class="k">${esc(k)}</div></div>`).join("");
+  $("#planPrice").innerHTML = `${esc(p.price)}<small>${esc(p.per)}</small>`;
+  $("#planNote").textContent = p.note;
+}
+tabs.addEventListener("click", e => { const b = e.target.closest("button"); if (b) setPlan(+b.dataset.i); });
+setPlan(1);
+
+// FAQ
+$("#faqList").innerHTML = CONFIG.faq.map(([q, a]) => `<details><summary>${esc(q)}<svg><use href="#plus"/></svg></summary><div class="a">${esc(a)}</div></details>`).join("");
+
+// Final CTA words
+$("#finalWords").innerHTML = CONFIG.finalWords.map((w, i) => w === "\n" ? "<br>" : `<span class="w" style="--d:${(i * 0.09).toFixed(2)}s">${esc(w)}</span> `).join("");
+
+// URL form
+$("#urlForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const input = $("#site");
+  let v = input.value.trim().replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+  if (!/^[a-z0-9-]+(\.[a-z0-9-]+)+$/i.test(v)) {
+    input.focus(); input.style.borderColor = "var(--red)";
+    input.placeholder = "Please enter a valid domain, e.g. yourcompany.com"; input.value = "";
+    return;
+  }
+  if (!CONFIG.formEndpoint) {
+    location.href = CONFIG.bookingUrl + (CONFIG.bookingUrl.includes("?") ? "&" : "?") + "website=" + encodeURIComponent(v);
+    return;
+  }
+  try {
+    await fetch(CONFIG.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ website: v, source: "landing" }) });
+  } catch (_) { /* still show confirmation; endpoint errors are logged server-side */ }
+  e.target.style.display = "none";
+  const ok = $("#formSuccess");
+  ok.innerHTML = `<b>Got it: ${esc(v)}</b><br>We'll map your ICP and send a free target-list snapshot within 24 hours.`;
+  ok.style.display = "block";
+});
+
+// Count-up stats
+function countUp(el) {
+  const target = +el.dataset.count, t0 = performance.now(), dur = 1600;
+  const tick = t => {
+    const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(target * e).toLocaleString("en-US");
+    if (k < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+document.querySelectorAll("[data-count]").forEach(countUp);
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => entries.forEach(en => {
+  if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+}), { threshold: 0.15 });
+document.querySelectorAll(".reveal, #final").forEach(el => io.observe(el));
+
+/* ----------------------------------------------------------------------
+   Particle field: prospects flowing along curves into the center
+   ---------------------------------------------------------------------- */
+function particleField(canvas, opts) {
+  const ctx = canvas.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, dpr, lines = [], dots = [];
+  const COLORS = ["#D92B2B", "#F07A1A", "#F5C518"];
+  function build() {
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const cx = W / 2, cy = H * opts.cy, n = W < 700 ? 9 : 16;
+    lines = []; dots = [];
+    for (let s = -1; s <= 1; s += 2) {
+      for (let i = 0; i < n; i++) {
+        const sy = opts.top ? -20 + (i / (n - 1)) * H * 0.2 : H * 0.05 + (i / (n - 1)) * H * 0.95;
+        const sx = opts.top ? cx + s * (W * 0.05 + (i / (n - 1)) * W * 0.55) : (s < 0 ? -40 : W + 40);
+        const ex = cx + s * (Math.min(opts.gap, W * 0.28) + Math.random() * 30), ey = cy + (Math.random() - .5) * 30;
+        const c1 = { x: opts.top ? sx : sx + s * -W * 0.18, y: opts.top ? cy * 0.6 : sy };
+        const c2 = { x: ex + s * W * 0.12, y: ey };
+        lines.push({ sx, sy, c1, c2, ex, ey });
+      }
+    }
+    lines.forEach(l => {
+      const k = Math.random() < .5 ? 1 : 2;
+      for (let j = 0; j < k; j++) dots.push({ l, t: Math.random(), v: 0.0012 + Math.random() * 0.0022, c: COLORS[Math.random() < .7 ? 0 : Math.random() < .7 ? 1 : 2], r: 1.6 + Math.random() * 1.6 });
+    });
+  }
+  const pt = (l, t) => {
+    const u = 1 - t;
+    return {
+      x: u*u*u*l.sx + 3*u*u*t*l.c1.x + 3*u*t*t*l.c2.x + t*t*t*l.ex,
+      y: u*u*u*l.sy + 3*u*u*t*l.c1.y + 3*u*t*t*l.c2.y + t*t*t*l.ey,
+    };
+  };
+  function frame() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(30,30,30,0.07)";
+    lines.forEach(l => { ctx.beginPath(); ctx.moveTo(l.sx, l.sy); ctx.bezierCurveTo(l.c1.x, l.c1.y, l.c2.x, l.c2.y, l.ex, l.ey); ctx.stroke(); });
+    dots.forEach(d => {
+      if (!reduce) { d.t += d.v; if (d.t > 1) d.t = 0; }
+      const p = pt(d.l, d.t), a = Math.sin(d.t * Math.PI);
+      ctx.globalAlpha = 0.25 + a * 0.75;
+      ctx.fillStyle = d.c;
+      ctx.beginPath(); ctx.arc(p.x, p.y, d.r, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+    if (!reduce && visible) requestAnimationFrame(frame);
+  }
+  let visible = true;
+  new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (visible && !was) requestAnimationFrame(frame); }).observe(canvas);
+  build(); frame();
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (reduce) frame(); }, 150); });
+}
+particleField($("#heroCanvas"), { cy: 0.66, gap: 300 });
+particleField($("#finalCanvas"), { cy: 0.62, gap: 60, top: true });
+</script>
+</body>
+</html>
