@@ -7,3 +7,5 @@ Single static file: open `index.html` or deploy the folder to any static host (N
 ## Before going live
 - Replace placeholder content marked with `data-edit` (hero stats, client results, testimonials).
 - Edit the `CONFIG` object at the bottom of `index.html`: `bookingUrl`, `formEndpoint`, plans and prices, FAQ, legal links.
+
+![Preview](preview.png)
